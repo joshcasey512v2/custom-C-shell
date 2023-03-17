@@ -44,12 +44,14 @@ int init(char **args)
   if (pid == 0) {
     // Child process
     if (execvp(args[0], args) == -1) {
+      printf("not valid");
       perror("error");
     }
     exit(1);
   } else if (pid < 0) {
     // Error forking
     perror("error");
+    printf("Not a valid command :");
   } else {
     // Parent process
     do {
@@ -65,7 +67,7 @@ int execute(char **args)
 {
   if (args[0] == NULL) {
     return 1;
-  }
+}
 
   //functions declared above size = (sizeof(function_strings) / sizeof(char *))
   for (int i = 0; i < functions(); i++) {
@@ -73,7 +75,6 @@ int execute(char **args)
       return (*function_list[i])(args);
     }
   }
-
   //call init function for execution process, (parent/child)
   return init(args);
 }
@@ -127,7 +128,6 @@ int env() {
   for (int i = 0; environ[i] != NULL; i++)
     printf("%s\n",environ[i]);
   return 1;
-  
 }
 
 int halt(){

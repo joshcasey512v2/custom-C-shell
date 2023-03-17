@@ -10,8 +10,6 @@ int main (int argc, char ** argv)
     char * args[MAX_ARGS];            
     char ** arg;                             
 
-    
-
     if (argc == 2)
     {
       printf("Opening: %s\n", argv[1]);
@@ -39,12 +37,14 @@ int main (int argc, char ** argv)
             while ((*arg++ = strtok(NULL,SEPARATORS)));
 
 
-            
-
-            // last entry will be NULL 
+      
             if (args[0]) {
-                
-                execute(args);
+
+              if (!strcmp(args[0], "quit"))
+              {
+                exit(0);
+              }        
+              execute(args);
   
             }
         }
