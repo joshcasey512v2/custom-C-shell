@@ -21,13 +21,13 @@ int main (int argc, char ** argv)
         return 1; // exit program if file cannot be opened
       }
       dup2(fp, 0);
-      close(fp);
+      close(fp); 
     }
 
     char cwd[1024];
     while (!feof(stdin)) { 
         
-        printf("(%s)-->", getcwd(cwd, sizeof(cwd))); // write prompt
+        printf("\n(%s)\n>>> ", getcwd(cwd, sizeof(cwd))); // write prompt
 
         if (fgets (buf, MAX_BUFFER, stdin )) { // read a line
             /* tokenize the input into args array */

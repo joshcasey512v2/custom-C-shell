@@ -1,12 +1,15 @@
 NAME
+
 	myshell
 
 DESCRIPTION
+
 	This is a simple shell that is custom built based
 	off the design of the bash shell. 
 	This is a command line interface with various commands and options.
 
 COMMANDS
+
 	dir -> display everything in the current working directory
 
 	pwd -> print the contents of the current working directory
@@ -29,16 +32,19 @@ COMMANDS
 
 
 ENVIORMENT
+
 	These variables are system wide and are inherited
 	by all system processes and shells. These change depending on
 	whereand what machine the shell is being run on. Information stored
 	that may be used by shell or be usefull for the shell.
  
 REDIRECTION
+
 	in progress
 
 
 BACKGROUND / FOREGROUND
+
 	Background processes run independant of the user and does
 	not require the user to start them.
 	Foreground processes requires a user to start them or
@@ -64,4 +70,4 @@ REFERENCES{
 
 	Brian W kernighan and Dennis M Ritchie, 1972, The C programming language
 	-> syntax and file handling
-}  
+}

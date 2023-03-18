@@ -8,6 +8,9 @@ I ackknowlage DCU's academic plagerism integraty policy.
 #define SEPARATORS " \t\n"
 
 
+
+//list of strings to call to access the functions
+//in the function list
 char *function_strings[] = {
   "pwd",
   "pause",
@@ -19,6 +22,9 @@ char *function_strings[] = {
   "echo",
 };
 
+
+//List of function pointers that takes a char** and returns an integer
+//the function strings and the address of the functions are linked via index
 int (*function_list[]) (char **) = {
   &pwd,
   &halt,
@@ -30,11 +36,17 @@ int (*function_list[]) (char **) = {
   &echo
 };
 
+
+//returns the length of the function string list so the
+//loop to compare strings does not go out of range
 int functions() {
   return sizeof(function_strings) / sizeof(char *);
 }
 
 
+//creates a process if valid to execute the commands passed to it
+//specified by the args, waits for child process and executes parent
+//returns error if the process is negative
 int init(char **args)
 {
   pid_t pid, wpid;
@@ -44,30 +56,30 @@ int init(char **args)
   if (pid == 0) {
     // Child process
     if (execvp(args[0], args) == -1) {
-      printf("not valid");
-      perror("error");
+      printf("Not a valid command, try \"help\"\n");
     }
     exit(1);
   } else if (pid < 0) {
-    // Error forking
     perror("error");
     printf("Not a valid command :");
   } else {
     // Parent process
-    do {
-      wpid = waitpid(pid, &status, WUNTRACED);
-    } while (!WIFEXITED(status) && !WIFSIGNALED(status));
+   wpid = waitpid(pid, &status, WUNTRACED);
   }
 
   return 1;
 }
 
-
+//below checks to see if there is any args passed
+//and if they are, a loop is started to compare the
+//string with the function strings then we return the
+//the function based on the index of the loop that satisfies the strcmp
 int execute(char **args)
 {
   if (args[0] == NULL) {
     return 1;
 }
+
 
   //functions declared above size = (sizeof(function_strings) / sizeof(char *))
   for (int i = 0; i < functions(); i++) {
@@ -79,6 +91,10 @@ int execute(char **args)
   return init(args);
 }
 
+
+//this function changes directory to the previous directory
+//if no arguments are passed else it goes to the specified directory
+//if it exists
 int cd(char **args)
 {
   if (args[1] == NULL) {
@@ -89,6 +105,8 @@ int cd(char **args)
   return 1;
 }
 
+
+//function to show the current working directory
 int pwd(){
   char cwd[1024];
   if (getcwd(cwd, sizeof(cwd)) != NULL) {
@@ -98,21 +116,28 @@ int pwd(){
 }
 
 
+//help function to display commands to try
 int help(){
-    system("cat readme.md");
+    system("more -d ../manual/readme.md");
     return 1;
 }
 
+
+//ls -al alias
 int dir(){
     system("ls -al");
     return 1;
 }
 
+
+//clear the screen of previous commands
 int clr() {
   printf("\e[1;1H\e[2J");
   return 1;
 }
 
+
+//print the arguments passed to command line seperated by spaces
 int echo(char **args) {
   for (int i = 1; args[i] != NULL; ++i)
   {
@@ -122,6 +147,8 @@ int echo(char **args) {
   return 1;
 }
 
+
+//print out all the enviorment variables
 int env() {
   extern char **environ;
 
@@ -130,6 +157,8 @@ int env() {
   return 1;
 }
 
+
+//sleeps processes until enter is inputed
 int halt(){
   int c;
   c = getchar();
