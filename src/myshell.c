@@ -1,6 +1,9 @@
 /*
-I ackknowlage DCU's academic plagerism integraty policy.
+	Student Number: 21361783
+	Student Name: Josh Casey
+	I ackknowlage DCU's academic plagerism integraty policy.
 */
+
 #include "utility.h"
 #include "utility.c"
 
@@ -14,15 +17,17 @@ int main (int argc, char ** argv)
     {
       printf("Opening: %s\n", argv[1]);
       int fp = open(argv[1], O_RDONLY);
-      char line[MAX_BUFFER];
       if (fp < 0)
       {
         printf("Failed to open: %s\n", argv[1]);
         return 1; // exit program if file cannot be opened
       }
       dup2(fp, 0);
-      close(fp); 
+      close(fp);
     }
+    
+  
+    
 
     char cwd[1024];
     while (!feof(stdin)) { 

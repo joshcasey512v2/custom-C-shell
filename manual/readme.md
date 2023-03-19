@@ -50,13 +50,6 @@ BACKGROUND / FOREGROUND
 	Foreground processes requires a user to start them or
 	interact with them.
 
-
-STRUDENT_INFO{
-	Student Number: 21361783
-	Student Name: Josh Casey
-	I ackknowlage DCU's academic plagerism integraty policy.
-}
-
 REFERENCES{
 
 	Stephen Brennan (), 16/1/2015, brennan.io write a shell in C
@@ -70,4 +63,11 @@ REFERENCES{
 
 	Brian W kernighan and Dennis M Ritchie, 1972, The C programming language
 	-> syntax and file handling
+}
+
+STRUDENT_INFO{
+	
+	Student Number: 21361783
+	Student Name: Josh Casey
+	I ackknowlage DCU's academic plagerism integraty policy.
 }

@@ -1,5 +1,7 @@
 /*
-I ackknowlage DCU's academic plagerism integraty policy.
+	Student Number: 21361783
+	Student Name: Josh Casey
+	I ackknowlage DCU's academic plagerism integraty policy.
 */
 
 #include <sys/wait.h>
